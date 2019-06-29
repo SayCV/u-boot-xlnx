@@ -130,16 +130,14 @@ ifneq ($(KBUILD_SRC),)
 	else									\
 		dest=arch/$(ARCH)/include/asm/arch-$(if $(SOC),$(SOC),$(CPU));	\
 	fi;									\
-	#ln -fsn $(KBUILD_SRC)/$$dest include/asm/arch
-	junction include/asm/arch $(KBUILD_SRC)/$$dest
+	ln -fsn $(KBUILD_SRC)/$$dest include/asm/arch
 else
 	$(Q)if [ -d arch/$(ARCH)/mach-$(SOC)/include/mach ]; then	\
 		dest=../../mach-$(SOC)/include/mach;			\
 	else								\
 		dest=arch-$(if $(SOC),$(SOC),$(CPU));			\
 	fi;								\
-	#ln -fsn $$dest arch/$(ARCH)/include/asm/arch
-	junction arch/$(ARCH)/include/asm/arch arch/arm/mach-zynq/include/mach
+	ln -fsn $$dest arch/$(ARCH)/include/asm/arch
 endif
 endif
 
